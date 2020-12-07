@@ -3,10 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link href="{{ asset('css/bootstrap.css') }}" type="text/css" rel="stylesheet" />     
     </head>
+    <header>
+        {% block header %}{% endblock %}
+    </header>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
+    <footer class="footer fixed-bottom bg-primary">
+        {% block footer %}
+            <div class="row">
+                <div class="col-4 text-left txt-footer">
+                    <a href="#" class="text-white">Contact</a><br>
+                </div>
+                <div class="col-4 text-center">
+                    <img class="img-fluid" src="{{ asset('images/753331.jpg') }}">
+                </div>
+                <div class="col-4 text-right txt-footer">
+                    <a href="#" class="text-white">Mentions légales</a><br>
+                    <a href="#" class="text-white">Plant du site</a>
+                </div>
+            </div>
+        {% endblock %}  
+    </footer>
 </html>

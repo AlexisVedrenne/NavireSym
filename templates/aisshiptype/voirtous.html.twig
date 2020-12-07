@@ -1,0 +1,7 @@
+{# empty Twig template #}
+{% extends "elements/navbar.html.twig" %}
+{% block body %}
+    {% for item in type %}
+        <h3>{{ item }}</h3>
+    {% endfor %}
+{% endblock %}
