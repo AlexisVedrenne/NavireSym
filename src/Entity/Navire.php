@@ -32,7 +32,7 @@ class Navire
     private $nom;
 
     /**
-     * @ORM\Column(type="string" length=9)
+     * @ORM\Column(type="string", length=9)
      */
     private $numMMSI;
 

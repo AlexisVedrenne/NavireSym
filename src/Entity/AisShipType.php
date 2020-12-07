@@ -21,7 +21,7 @@ class AisShipType
     /**
      * @ORM\Column(type="integer")
      * @Assert\Length(min=1,max=9,minMessage="Le type d'un navire doit être compris entre 1 et 9",
-     * maxMessage=""Le type d'un navire doit être compris entre 1 et 9",allowEmptyString=false)
+     * maxMessage="Le type d'un navire doit être compris entre 1 et 9",allowEmptyString=false)
      */
     private $aisShipType;
 
