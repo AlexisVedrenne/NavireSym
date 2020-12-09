@@ -32,7 +32,7 @@ class MessageController extends AbstractController
         $message= new Message();
         $form=$this->createForm(MessageType::class,$message);
         $form->handleRequest($request);
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
             $message=$form->getData();          
             GestionContact::envoiMailContact($message);           
         }
