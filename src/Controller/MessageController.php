@@ -34,9 +34,9 @@ class MessageController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $message=$form->getData();          
-            GestionContact::envoiMailContact($message);           
-        }
-        
+            GestionContact::envoiMailContact($message);
+            $this->addFlash('notification',"Votre message a bien été envoyé");
+        }       
         return array('form'=>$form->createView());
     }
 }
