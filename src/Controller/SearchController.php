@@ -32,7 +32,7 @@ class SearchController extends AbstractController {
             $critere="Imo recherché : ". $valeur;
         }
         else{
-            $critere="MMSI recherché : "^$valeur;
+            $critere="MMSI recherché : ".$valeur;
         }
         return new Response("<h1> $critere </h1>");
     }
