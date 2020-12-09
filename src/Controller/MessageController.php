@@ -33,8 +33,8 @@ class MessageController extends AbstractController
         $form=$this->createForm(MessageType::class,$message);
         $form->handleRequest($request);
         if($form->isSubmitted()){
-            $message=$form->getData();
-            GestionContact::envoiMailContact($message);
+            $message=$form->getData();          
+            GestionContact::envoiMailContact($message);           
         }
         
         return array('form'=>$form->createView());
