@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Message;
 use App\Form\MessageType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
+use App\Service\GestionContact;
 
 class MessageController extends AbstractController
 {
@@ -20,11 +23,20 @@ class MessageController extends AbstractController
         ]);
     }
     
-    public function EnvoieMail(){
+    /**
+     * @Route("/message/envoieMail",name="message_envoieMail")
+     * @Template("message/contact.html.twig")
+     * @return type
+     */
+    public function EnvoieMail(Request $request){
         $message= new Message();
         $form=$this->createForm(MessageType::class,$message);
         $form->handleRequest($request);
+        if($form->isSubmitted()){
+            $message=$form->getData();
+            GestionContact::envoiMailContact($message);
+        }
         
-        return array('formMessage'=>$form->createView());
+        return array('form'=>$form->createView());
     }
 }
