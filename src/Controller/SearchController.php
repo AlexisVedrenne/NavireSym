@@ -34,7 +34,7 @@ class SearchController extends AbstractController {
         else{
             $critere="MMSI recherché : ".$valeur;
         }
-        return new Response("<h1> $critere </h1>");
+        return $this->render('search/affichage.html.twig',['critere'=>$critere]);
     }
     
     public function searchBar() {
@@ -52,4 +52,11 @@ class SearchController extends AbstractController {
         return $this->render('elements/search.html.twig',['formSearch'=>$form->createView()]);
     }
 
+    /**
+     * @Route("/home",name="home")
+     */
+    public function home(){
+        
+       return $this->render('search/home.html.twig');
+    }
 }
