@@ -31,6 +31,12 @@ class AisShipType
      */
     private $libelle;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Port::class, inversedBy="aisShipTypes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lesPorts;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -56,6 +62,18 @@ class AisShipType
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    public function getLesPorts(): ?Port
+    {
+        return $this->lesPorts;
+    }
+
+    public function setLesPorts(?Port $lesPorts): self
+    {
+        $this->lesPorts = $lesPorts;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PortRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,6 +36,16 @@ class Port
      * @ORM\JoinColumn(nullable=false,name="idpays")
      */
     private $lePays;
+
+    /**
+     * @ORM\OneToMany(targetEntity=AisShipType::class, mappedBy="lesPorts")
+     */
+    private $aisShipTypes;
+
+    public function __construct()
+    {
+        $this->aisShipTypes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -72,6 +84,36 @@ class Port
     public function setLePays(?Pays $lePays): self
     {
         $this->lePays = $lePays;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AisShipType[]
+     */
+    public function getAisShipTypes(): Collection
+    {
+        return $this->aisShipTypes;
+    }
+
+    public function addAisShipType(AisShipType $aisShipType): self
+    {
+        if (!$this->aisShipTypes->contains($aisShipType)) {
+            $this->aisShipTypes[] = $aisShipType;
+            $aisShipType->setLesPorts($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAisShipType(AisShipType $aisShipType): self
+    {
+        if ($this->aisShipTypes->removeElement($aisShipType)) {
+            // set the owning side to null (unless already changed)
+            if ($aisShipType->getLesPorts() === $this) {
+                $aisShipType->setLesPorts(null);
+            }
+        }
 
         return $this;
     }
