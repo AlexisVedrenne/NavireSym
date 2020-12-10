@@ -19,7 +19,7 @@ class Navire
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=7)
+     * @ORM\Column(type="string", length=7,name="imo")
      * @Assert\Regex(pattern="/[1-9]{7}/",
      * message="Le numéro IMO doit comporter 7 chiffres")
      */
@@ -32,12 +32,12 @@ class Navire
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=9)
+     * @ORM\Column(type="string", length=9,name="mmsi")
      */
     private $numMMSI;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=10,name="indicatifappel")
      */
     private $indicatifAppel;
 
@@ -45,6 +45,22 @@ class Navire
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $eta;
+
+    /**
+     * @ORM\Column(name="letype")
+     * @ORM\ManyToOne(targetEntity=AisShipType::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $leType;
+
+    /**
+     * @ORM\Column(name="lepavillon")
+     * @ORM\ManyToOne(targetEntity=Pays::class)
+     * @ORM\JoinColumn(name="idpays",nullable=false)
+     */
+    private $lePavillon;
+
+    
 
     public function getId(): ?int
     {
@@ -107,6 +123,30 @@ class Navire
     public function setEta(?\DateTimeInterface $eta): self
     {
         $this->eta = $eta;
+
+        return $this;
+    }
+
+    public function getLeType(): ?AisShipType
+    {
+        return $this->leType;
+    }
+
+    public function setLeType(?AisShipType $leType): self
+    {
+        $this->leType = $leType;
+
+        return $this;
+    }
+
+    public function getLePavillon(): ?Pays
+    {
+        return $this->lePavillon;
+    }
+
+    public function setLePavillon(?Pays $lePavillon): self
+    {
+        $this->lePavillon = $lePavillon;
 
         return $this;
     }

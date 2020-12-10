@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @ORM\Table(name="aisshiptype")
  * @ORM\Entity(repositoryClass=AisShipTypeRepository::class)
  */
 class AisShipType
@@ -19,7 +20,7 @@ class AisShipType
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",name="aisshiptype")
      * @Assert\Length(min=1,max=9,minMessage="Le type d'un navire doit être compris entre 1 et 9",
      * maxMessage="Le type d'un navire doit être compris entre 1 et 9",allowEmptyString=false)
      */

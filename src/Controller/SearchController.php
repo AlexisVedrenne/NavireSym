@@ -47,7 +47,7 @@ class SearchController extends AbstractController {
                         'MMSI' => 'MMSI',
                     ), 'multiple' => false,
                     'expanded' => true))
-                ->add('envoie',SubmitType::class)               
+                ->add('Rechercher',SubmitType::class)               
                 ->getForm();
         return $this->render('elements/search.html.twig',['formSearch'=>$form->createView()]);
     }
