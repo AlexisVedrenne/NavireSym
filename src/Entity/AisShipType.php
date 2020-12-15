@@ -32,10 +32,12 @@ class AisShipType
     private $libelle;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Port::class, inversedBy="aisShipTypes")
-     * @ORM\JoinColumn(nullable=false)
-     * @ORM\JoinTable(name="porttypecompatible",joinColumns={@ORM\JoinColumn(name="idaistype",referencedColumnName="id")},
-     * inverseJoinColumns={@ORM\JoinColumn(name="idport",referencedColumnName="id")})
+     * @ORM\Column(name="lesPortsId")
+     * @ORM\ManyToOne(targetEntity=Port::class, inversedBy="lesTypes")
+     * @ORM\JoinTable(name="porttypecompatible",
+     * joinColumns={@ORM\JoinColumn(name="idaistype",referencedColumnName="id")},
+     * inverseJoinColumns={@ORM\JoinColumn(name="idport",referencedColumnName="id")}
+     * )
      */
     private $lesPorts;
 

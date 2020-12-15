@@ -39,14 +39,13 @@ class Port
 
     /**
      * @ORM\OneToMany(targetEntity=AisShipType::class, mappedBy="lesPorts")
-     * @ORM\JoinTable(name="porttypecompatible",joinColumns={@ORM\JoinColumn(name="idaistype",referencedColumnName="id")},
-     * inverseJoinColumns={@ORM\JoinColumn(name="idport",referencedColumnName="id")})
+     * 
      */
-    private $aisShipTypes;
+    private $lesTypes;
 
     public function __construct()
     {
-        $this->aisShipTypes = new ArrayCollection();
+        $this->lesTypes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,13 +94,13 @@ class Port
      */
     public function getAisShipTypes(): Collection
     {
-        return $this->aisShipTypes;
+        return $this->lesTypes;
     }
 
     public function addAisShipType(AisShipType $aisShipType): self
     {
-        if (!$this->aisShipTypes->contains($aisShipType)) {
-            $this->aisShipTypes[] = $aisShipType;
+        if (!$this->lesTypes->contains($aisShipType)) {
+            $this->lesTypes[] = $aisShipType;
             $aisShipType->setLesPorts($this);
         }
 
@@ -110,7 +109,7 @@ class Port
 
     public function removeAisShipType(AisShipType $aisShipType): self
     {
-        if ($this->aisShipTypes->removeElement($aisShipType)) {
+        if ($this->lesTypes->removeElement($aisShipType)) {
             // set the owning side to null (unless already changed)
             if ($aisShipType->getLesPorts() === $this) {
                 $aisShipType->setLesPorts(null);
