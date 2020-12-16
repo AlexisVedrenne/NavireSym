@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AisShipTypeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Port;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -31,14 +32,9 @@ class AisShipType
      */
     private $libelle;
 
-    /**
-     * @ORM\Column(name="lesPortsId")
-     * @ORM\ManyToOne(targetEntity=Port::class, inversedBy="lesTypes")
-     * @ORM\JoinTable(
-     *      name="porttypecompatible",
-     *      joinColumns={@ORM\JoinColumn(name="idaistype",referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="idport",referencedColumnName="id")}
-     * )
+    /**  
+     * @ORM\ManyToMany(targetEntity=Port::class, mappedBy="lesTypes")
+     * 
      */
     private $lesPorts;
 
@@ -71,7 +67,7 @@ class AisShipType
         return $this;
     }
 
-    public function getLesPorts(): ?Port
+    public function getLesPorts(): ?\Doctrine\Common\Collections\Collection
     {
         return $this->lesPorts;
     }

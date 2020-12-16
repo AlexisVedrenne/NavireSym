@@ -1,7 +1,19 @@
 {# empty Twig template #}
 {% extends "base.html.twig" %}
+{% block title %}Voir Tous les ports !{% endblock %}
 {% block body %}
-    {% for item in type %}
-        <h3>{{ item }}</h3>
-    {% endfor %}
+    <table class="table table-hover">
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Libelle</th>
+            <th scope="col">Action</th>
+        </tr>
+        {% for item in type %}
+            <tr>
+                <th>{{ item.aisShipType }}</th>
+                <th>{{ item.libelle }}</th>
+                <th><a href="{{ path("aisshiptype_portcompatible",{'id':item.id}) }}">Ports compatibles</a></th>
+            </tr>
+        {% endfor %} 
+    </table>   
 {% endblock %}

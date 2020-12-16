@@ -1,0 +1,21 @@
+{# empty Twig template #}
+% extends "base.html.twig" %}
+{% block title %}Voir Tous les ports !{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <tr>
+            <th scope="col">Idicatif</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Pays</th>
+            <th scope="col">Action</th>
+        </tr>
+        {% for unPort in lesPorts %}
+            <tr>
+                <th>{{ unPort.indicatif }}</th>
+                <th>{{ unPort.nom }}</th>
+                <th>{{ unPort.lePays }}</th>
+                <th><a href="{{ path("aisshiptype_portcompatible") }}">Ports compatibles</a></th>
+            </tr>
+        {% endfor %} 
+    </table>   
+{% endblock %}

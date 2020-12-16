@@ -23,8 +23,8 @@ class Navire
 
     /**
      * @ORM\Column(type="string", length=7,name="imo",unique=true)
-     * @Assert\Regex(pattern="/[1-9]{7}/",
-     * message="Le numéro IMO doit comporter 7 chiffres")
+     * @Assert\Regex(pattern="/[1-9][0-9]{6}/",
+     * message="Le numéro IMO doit comporter 6 chiffres")
      */
     private $numImo;
 
@@ -36,6 +36,8 @@ class Navire
 
     /**
      * @ORM\Column(type="string", length=9,name="mmsi")
+     * @Assert\Regex(pattern="/[1-9][0-9]{8}/",
+     * message="Le numéro MMSI doit comporter 8 chiffres")
      */
     private $numMMSI;
 
@@ -51,7 +53,7 @@ class Navire
 
     /**
      * @ORM\Column(name="letype")
-     * @ORM\ManyToOne(targetEntity=AisShipType::class)
+     * @ORM\ManyToMany(targetEntity=AisShipType::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $leType;
@@ -73,6 +75,23 @@ class Navire
      * @ORM\OneToMany(targetEntity=Escale::class, mappedBy="leNavire", orphanRemoval=true)
      */
     private $lesEscales;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $longueur;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $largeur;
+
+    /**
+     * @ORM\Column(type="decimal", precision=4, scale=1)
+     */
+    private $triantdeau;
+
+    
 
     public function __construct()
     {
@@ -211,4 +230,42 @@ class Navire
 
         return $this;
     }
+
+    public function getLongueur(): ?int
+    {
+        return $this->longueur;
+    }
+
+    public function setLongueur(int $longueur): self
+    {
+        $this->longueur = $longueur;
+
+        return $this;
+    }
+
+    public function getLargeur(): ?int
+    {
+        return $this->largeur;
+    }
+
+    public function setLargeur(int $largeur): self
+    {
+        $this->largeur = $largeur;
+
+        return $this;
+    }
+
+    public function getTriantdeau(): ?string
+    {
+        return $this->triantdeau;
+    }
+
+    public function setTriantdeau(string $triantdeau): self
+    {
+        $this->triantdeau = $triantdeau;
+
+        return $this;
+    }
+
+    
 }

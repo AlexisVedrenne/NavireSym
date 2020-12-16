@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use App\Repository\AisShipTypeRepository;
+use App\Entity\Port;
 
 class AisShipTypeController extends AbstractController
 {
@@ -23,17 +25,18 @@ class AisShipTypeController extends AbstractController
      * @Route("/aisshiptype/voirtous", name="aisshiptype_voirtous")
      * @Template("aisshiptype/voirtous.html.twig")
      */
-    public function voirTous(){
-        $type=[ 1=>'Reserved',
-                2=>'Win In Ground',
-                3=>'Special Category',
-                4=>'Higt-Speed Craft',
-                5=>'Special Category',
-                6=>'Passenger',
-                7=>'Cargo',
-                8=>'Tanker',
-                9=>'Other',];
-        
+    public function voirTous(AisShipTypeRepository $repo){
+        $type=$repo->findAll();      
         return array('type'=>$type);
+    }
+    
+    /**
+     * @Route("/aisshiptype/portcompatible/{id}", name="aisshiptype_portcompatible")
+     * @Template("aisshiptype/portcompatible.html.twig")
+     */
+    public function portCompatible(int $id,AisShipTypeRepository $repo){
+        $type=$repo->find($id);
+        $lesPorts=$type->getLesPorts();
+        return array('lesPort'=>$type->getLesPorts());
     }
 }

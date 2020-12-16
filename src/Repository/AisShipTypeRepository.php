@@ -12,10 +12,9 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method AisShipType[]    findAll()
  * @method AisShipType[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AisShipTypeRepository extends ServiceEntityRepository
-{
-    public function __construct(ManagerRegistry $registry)
-    {
+class AisShipTypeRepository extends ServiceEntityRepository {
+
+    public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, AisShipType::class);
     }
 
@@ -23,28 +22,33 @@ class AisShipTypeRepository extends ServiceEntityRepository
     //  * @return AisShipType[] Returns an array of AisShipType objects
     //  */
     /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+      public function findByExampleField($value)
+      {
+      return $this->createQueryBuilder('a')
+      ->andWhere('a.exampleField = :val')
+      ->setParameter('val', $value)
+      ->orderBy('a.id', 'ASC')
+      ->setMaxResults(10)
+      ->getQuery()
+      ->getResult()
+      ;
+      }
+     */
 
     /*
-    public function findOneBySomeField($value): ?AisShipType
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+      public function findOneBySomeField($value): ?AisShipType
+      {
+      return $this->createQueryBuilder('a')
+      ->andWhere('a.exampleField = :val')
+      ->setParameter('val', $value)
+      ->getQuery()
+      ->getOneOrNullResult()
+      ;
+      }
+     */
+
+    public function findPortCompatible($id) {
+        
     }
-    */
+
 }
