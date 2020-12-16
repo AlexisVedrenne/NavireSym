@@ -15,17 +15,17 @@ class Pays
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",name="id")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=60)
+     * @ORM\Column(type="string", length=60,name="nom")
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=3)
+     * @ORM\Column(type="string", length=3,name="indicatif")
      * @Assert\Regex(pattern="/[A-Z]{3}/",message="L'indicatif Pays a strictement 3 caractère")
      */
     private $indicatif;

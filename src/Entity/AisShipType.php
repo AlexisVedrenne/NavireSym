@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="aisshiptype")
  * @ORM\Entity(repositoryClass=AisShipTypeRepository::class)
+ * @ORM\Table(name="aisshiptype")
  */
 class AisShipType
 {
@@ -34,9 +34,10 @@ class AisShipType
     /**
      * @ORM\Column(name="lesPortsId")
      * @ORM\ManyToOne(targetEntity=Port::class, inversedBy="lesTypes")
-     * @ORM\JoinTable(name="porttypecompatible",
-     * joinColumns={@ORM\JoinColumn(name="idaistype",referencedColumnName="id")},
-     * inverseJoinColumns={@ORM\JoinColumn(name="idport",referencedColumnName="id")}
+     * @ORM\JoinTable(
+     *      name="porttypecompatible",
+     *      joinColumns={@ORM\JoinColumn(name="idaistype",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="idport",referencedColumnName="id")}
      * )
      */
     private $lesPorts;

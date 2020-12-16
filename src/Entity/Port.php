@@ -6,6 +6,7 @@ use App\Repository\PortRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PortRepository::class)
@@ -27,11 +28,12 @@ class Port
 
     /**
      * @ORM\Column(type="string", length=5)
+     * @Assert\Regex(pattern="/[A-Z]{5}/",message="L'indicatif du Port a strictement 5 caractères")
      */
     private $indicatif;
 
     /**
-     * @ORM\Column(name="lepays")
+     * @ORM\Column(name="idpays")
      * @ORM\ManyToOne(targetEntity=Pays::class)
      * @ORM\JoinColumn(nullable=false,name="idpays")
      */
@@ -43,9 +45,21 @@ class Port
      */
     private $lesTypes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Navire::class, mappedBy="portDestination")
+     */
+    private $naviresAttendus;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Escale::class, mappedBy="lePort", orphanRemoval=true)
+     */
+    private $lesEscales;
+
     public function __construct()
     {
         $this->lesTypes = new ArrayCollection();
+        $this->naviresAttendus = new ArrayCollection();
+        $this->lesEscales = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -113,6 +127,66 @@ class Port
             // set the owning side to null (unless already changed)
             if ($aisShipType->getLesPorts() === $this) {
                 $aisShipType->setLesPorts(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Navire[]
+     */
+    public function getNaviresAttendus(): Collection
+    {
+        return $this->naviresAttendus;
+    }
+
+    public function addNaviresAttendu(Navire $naviresAttendu): self
+    {
+        if (!$this->naviresAttendus->contains($naviresAttendu)) {
+            $this->naviresAttendus[] = $naviresAttendu;
+            $naviresAttendu->setPortDestination($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNaviresAttendu(Navire $naviresAttendu): self
+    {
+        if ($this->naviresAttendus->removeElement($naviresAttendu)) {
+            // set the owning side to null (unless already changed)
+            if ($naviresAttendu->getPortDestination() === $this) {
+                $naviresAttendu->setPortDestination(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Escale[]
+     */
+    public function getLesEscales(): Collection
+    {
+        return $this->lesEscales;
+    }
+
+    public function addLesEscale(Escale $lesEscale): self
+    {
+        if (!$this->lesEscales->contains($lesEscale)) {
+            $this->lesEscales[] = $lesEscale;
+            $lesEscale->setLePort($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesEscale(Escale $lesEscale): self
+    {
+        if ($this->lesEscales->removeElement($lesEscale)) {
+            // set the owning side to null (unless already changed)
+            if ($lesEscale->getLePort() === $this) {
+                $lesEscale->setLePort(null);
             }
         }
 
