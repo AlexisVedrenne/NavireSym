@@ -1,20 +1,21 @@
 {# empty Twig template #}
-% extends "base.html.twig" %}
+{% extends "base.html.twig" %}
 {% block title %}Voir Tous les ports !{% endblock %}
 {% block body %}
+    <a href="{{ path("aisshiptype_voirtous") }}"><h1 class=" btn btn-info btn-lg btn-block">Port Compatibles : Type de Navire {{ type.id }}- {{ type.libelle }}</h1></a>
     <table class="table table-hover">
         <tr>
             <th scope="col">Idicatif</th>
             <th scope="col">Nom</th>
             <th scope="col">Pays</th>
-            <th scope="col">Action</th>
+            <th scope="col">Voir</th>
         </tr>
         {% for unPort in lesPorts %}
             <tr>
                 <th>{{ unPort.indicatif }}</th>
                 <th>{{ unPort.nom }}</th>
-                <th>{{ unPort.lePays }}</th>
-                <th><a href="{{ path("aisshiptype_portcompatible") }}">Ports compatibles</a></th>
+                <th>{{ unPort.lePays.nom }}</th>
+                <th><a class="btn btn-outline-info" href="#">Détails</a></th>
             </tr>
         {% endfor %} 
     </table>   

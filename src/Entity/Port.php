@@ -33,7 +33,6 @@ class Port
     private $indicatif;
 
     /**
-     * @ORM\Column(name="idpays")
      * @ORM\ManyToOne(targetEntity=Pays::class)
      * @ORM\JoinColumn(nullable=false,name="idpays")
      */

@@ -37,6 +37,6 @@ class AisShipTypeController extends AbstractController
     public function portCompatible(int $id,AisShipTypeRepository $repo){
         $type=$repo->find($id);
         $lesPorts=$type->getLesPorts();
-        return array('lesPort'=>$type->getLesPorts());
+        return array('lesPorts'=>$type->getLesPorts(),'type'=>$type);
     }
 }
