@@ -20,22 +20,22 @@ final class Version20201216145411 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE ais_ship_type_port');
+        //$this->addSql('DROP TABLE ais_ship_type_port');
         //$this->addSql('DROP TABLE porttypecompatible');
-        $this->addSql('ALTER TABLE aisshiptype ADD lesports VARCHAR(255) NOT NULL, CHANGE libelle libelle VARCHAR(60) NOT NULL');
-        $this->addSql('ALTER TABLE escale DROP FOREIGN KEY FK_C39FEDD36A50BD94');
-        $this->addSql('ALTER TABLE escale DROP FOREIGN KEY FK_C39FEDD3905EAC6C');
-        $this->addSql('DROP INDEX IDX_C39FEDD3905EAC6C ON escale');
-        $this->addSql('DROP INDEX IDX_C39FEDD36A50BD94 ON escale');
-        $this->addSql('ALTER TABLE escale CHANGE idnavire idnavire VARCHAR(255) NOT NULL, CHANGE idport idport VARCHAR(255) NOT NULL');
-        $this->addSql('ALTER TABLE navire DROP FOREIGN KEY FK_EED1038E750CD0E');
-        $this->addSql('ALTER TABLE navire DROP FOREIGN KEY FK_EED1038EA83FAE4');
-        $this->addSql('DROP INDEX IDX_EED1038E750CD0E ON navire');
-        $this->addSql('DROP INDEX IDX_EED1038EA83FAE4 ON navire');
-        $this->addSql('ALTER TABLE navire ADD lepavillon VARCHAR(255) NOT NULL, ADD triantdeau NUMERIC(4, 1) NOT NULL, DROP idpays, DROP tirantdeau, CHANGE letype letype VARCHAR(255) NOT NULL, CHANGE eta eta DATETIME DEFAULT NULL');
-        $this->addSql('ALTER TABLE port DROP FOREIGN KEY FK_43915DCC47626230');
-        $this->addSql('DROP INDEX IDX_43915DCC47626230 ON port');
-        $this->addSql('ALTER TABLE port CHANGE idPays idpays VARCHAR(255) NOT NULL');
+//        $this->addSql('ALTER TABLE aisshiptype ADD lesports VARCHAR(255) NOT NULL, CHANGE libelle libelle VARCHAR(60) NOT NULL');
+//        $this->addSql('ALTER TABLE escale DROP FOREIGN KEY FK_C39FEDD36A50BD94');
+//        $this->addSql('ALTER TABLE escale DROP FOREIGN KEY FK_C39FEDD3905EAC6C');
+//        $this->addSql('DROP INDEX IDX_C39FEDD3905EAC6C ON escale');
+//        $this->addSql('DROP INDEX IDX_C39FEDD36A50BD94 ON escale');
+        //$this->addSql('ALTER TABLE escale CHANGE idnavire idnavire VARCHAR(255) NOT NULL, CHANGE idport idport VARCHAR(255) NOT NULL');
+//        $this->addSql('ALTER TABLE navire DROP FOREIGN KEY FK_EED1038E750CD0E');
+//        $this->addSql('ALTER TABLE navire DROP FOREIGN KEY FK_EED1038EA83FAE4');
+//        $this->addSql('DROP INDEX IDX_EED1038E750CD0E ON navire');
+//        $this->addSql('DROP INDEX IDX_EED1038EA83FAE4 ON navire');
+        //$this->addSql('ALTER TABLE navire ADD lepavillon VARCHAR(255) NOT NULL, ADD triantdeau NUMERIC(4, 1) NOT NULL, DROP idpays, DROP tirantdeau, CHANGE letype letype VARCHAR(255) NOT NULL, CHANGE eta eta DATETIME DEFAULT NULL');
+        //$this->addSql('ALTER TABLE port DROP FOREIGN KEY FK_43915DCC47626230');
+//        $this->addSql('DROP INDEX IDX_43915DCC47626230 ON port');
+        //$this->addSql('ALTER TABLE port CHANGE idPays idpays VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema) : void

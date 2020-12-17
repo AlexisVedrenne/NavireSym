@@ -20,9 +20,9 @@ final class Version20201216155647 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE aisshiptype DROP lesports');
-        $this->addSql('ALTER TABLE porttypecompatible DROP PRIMARY KEY');
-        $this->addSql('ALTER TABLE porttypecompatible ADD PRIMARY KEY (idport, idaistype)');
+//        $this->addSql('ALTER TABLE aisshiptype DROP lesports');
+//        $this->addSql('ALTER TABLE porttypecompatible DROP PRIMARY KEY');
+//        $this->addSql('ALTER TABLE porttypecompatible ADD PRIMARY KEY (idport, idaistype)');
     }
 
     public function down(Schema $schema) : void

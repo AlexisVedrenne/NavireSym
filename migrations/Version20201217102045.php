@@ -20,9 +20,9 @@ final class Version20201217102045 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE port CHANGE idpays idpays INT NOT NULL');
-        $this->addSql('ALTER TABLE port ADD CONSTRAINT FK_43915DCCE750CD0E FOREIGN KEY (idpays) REFERENCES pays (id)');
-        $this->addSql('CREATE INDEX IDX_43915DCCE750CD0E ON port (idpays)');
+//        $this->addSql('ALTER TABLE port CHANGE idpays idpays INT NOT NULL');
+//        $this->addSql('ALTER TABLE port ADD CONSTRAINT FK_43915DCCE750CD0E FOREIGN KEY (idpays) REFERENCES pays (id)');
+//        $this->addSql('CREATE INDEX IDX_43915DCCE750CD0E ON port (idpays)');
     }
 
     public function down(Schema $schema) : void
