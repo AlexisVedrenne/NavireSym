@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\AisShipType;
 
 /**
  * @ORM\Entity(repositoryClass=PortRepository::class)
@@ -33,7 +34,7 @@ class Port
     private $indicatif;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Pays::class)
+     * @ORM\ManyToOne(targetEntity=Pay::class)
      * @ORM\JoinColumn(nullable=false,name="idpays")
      */
     private $lePays;
@@ -95,12 +96,12 @@ class Port
         return $this;
     }
 
-    public function getLePays(): ?Pays
+    public function getLePays(): ?Pay
     {
         return $this->lePays;
     }
 
-    public function setLePays(?Pays $lePays): self
+    public function setLePays(?Pay $lePays): self
     {
         $this->lePays = $lePays;
 
@@ -110,12 +111,12 @@ class Port
     /**
      * @return Collection|AisShipType[]
      */
-    public function getAisShipTypes(): Collection
+    public function getLesTypes(): Collection
     {
         return $this->lesTypes;
     }
 
-    public function addAisShipType(AisShipType $aisShipType): self
+    public function addLesTypes(AisShipType $aisShipType): self
     {
         if (!$this->lesTypes->contains($aisShipType)) {
             $this->lesTypes[] = $aisShipType;

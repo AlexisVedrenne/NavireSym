@@ -10,7 +10,7 @@
             <th scope="col">Pays</th>
             <th scope="col">Voir</th>
         </tr>
-        {% for unPort in lesPorts %}
+        {% for unPort in lesPorts|sort((a, b) => a.nom <=> b.nom) %}
             <tr>
                 <th>{{ unPort.indicatif }}</th>
                 <th>{{ unPort.nom }}</th>

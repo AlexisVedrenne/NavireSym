@@ -52,13 +52,14 @@ class Navire
     private $eta;
 
     /**
+     * @ORM\Column(name="letype")
      * @ORM\ManyToMany(targetEntity=AisShipType::class)
-     * @ORM\JoinColumn(nullable=false,name="letype")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $leType;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Pays::class)
+     * @ORM\ManyToOne(targetEntity=Pay::class)
      * @ORM\JoinColumn(name="idpays",nullable=false)
      */
     private $lePavillon;
@@ -175,12 +176,12 @@ class Navire
         return $this;
     }
 
-    public function getLePavillon(): ?Pays
+    public function getLePavillon(): ?Pay
     {
         return $this->lePavillon;
     }
 
-    public function setLePavillon(?Pays $lePavillon): self
+    public function setLePavillon(?Pay $lePavillon): self
     {
         $this->lePavillon = $lePavillon;
 

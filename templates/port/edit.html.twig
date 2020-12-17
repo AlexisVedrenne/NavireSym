@@ -1,0 +1,29 @@
+{# empty Twig template #}
+{% extends "base.html.twig" %}
+{% block body %}
+    {{ form_start(form) }}
+    <div class="form-group  align-middle container">
+        <div class="col-8">
+            {{ form_label(form.indicatif,'Indicatif') }}
+            {{ form_widget(form.indicatif,{'attr':{'placeholder':'Indicatif international','class':'form-control'}}) }}
+            {{ form_label(form.nom,'Nom du Port') }}
+            {{ form_widget(form.nom,{'attr':{'placeholder':'Saisir le nom du port','class':'form-control'}}) }}
+        </div>
+        <div class="row">
+            <div class="col-4 form-group">
+                {{ form_label(form.lePays,'Pays') }}
+                {{ form_widget(form.lePays,{'attr':{'class':'form-control'}}) }}
+            </div>
+            <div class="form-check-inline">
+                <div class="custom-control custom-checkbox">
+                    {{ form_label(form.lesTypes,'Types de navires acceptés') }}
+                    {{ form_widget(form.lesTypes,{'attr':{'class':''}}) }}
+                </div>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-info">Créer</button>
+        {{ form_end(form) }}       
+    </div>
+    
+{% endblock %}

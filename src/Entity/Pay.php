@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=PayRepository::class)
  * @ORM\Table(name="pays",uniqueConstraints={@ORM\UniqueConstraint(name="indicatif_unique",columns={"indicatif"})},indexes={@ORM\Index(name="ind_indicatif",columns={"indicatif"})})
  */
-class Pays
+class Pay
 {
     /**
      * @ORM\Id
