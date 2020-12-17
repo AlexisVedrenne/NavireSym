@@ -52,14 +52,12 @@ class Navire
     private $eta;
 
     /**
-     * @ORM\Column(name="letype")
      * @ORM\ManyToMany(targetEntity=AisShipType::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false,name="letype")
      */
     private $leType;
 
     /**
-     * @ORM\Column(name="lepavillon")
      * @ORM\ManyToOne(targetEntity=Pays::class)
      * @ORM\JoinColumn(name="idpays",nullable=false)
      */
