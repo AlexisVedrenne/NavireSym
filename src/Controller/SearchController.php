@@ -29,12 +29,12 @@ class SearchController extends AbstractController {
     public function handleSearch(Request $request,NavireRepository $repo): Response{
         $valeur= $request->request->get('form')['cherche'];
         if($request->request->get('form')['choix']=='IMO'){
-            $critere="Imo recherché : ". $valeur;
+            $critere=$valeur;
         }
         else{
-            $critere="MMSI recherché : ".$valeur;
+            $critere=$valeur;
         }
-        return $this->render('search/affichage.html.twig',['critere'=>$critere]);
+        return $this->redirectToRoute('navire_edit',array('critere'=>$critere));
     }
     
     public function searchBar() {

@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {{ form_start(form) }}
+    <div class="form-group  align-middle container">
+
+        <div class="row">
+            <div class="col-2">
+                {{ form_label(form.numImo,'IMO') }}
+                {{ form_widget(form.numImo,{'attr':{'placeholder':'Numéro IMO','class':'form-control'}}) }}
+            </div>
+            <div class="col-10">
+                {{ form_label(form.nom,'Nom du Navire') }}
+                {{ form_widget(form.nom,{'attr':{'placeholder':'Saisir le nom du Navire','class':'form-control'}}) }}
+            </div>
+            <div class="col-2">
+                {{ form_label(form.numMMSI,'MMSI') }}
+                {{ form_widget(form.numMMSI,{'attr':{'placeholder':'Numéro MMSI','class':'form-control'}}) }}
+            </div>
+            <div class="col-2">
+                {{ form_label(form.indicatifAppel,'Indicatif VHF') }}
+                {{ form_widget(form.indicatifAppel,{'attr':{'placeholder':'Numéro IMO','class':'form-control'}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 form-group">
+                {{ form_label(form.longueur,'Longueur') }}
+                {{ form_widget(form.longueur,{'attr':{'class':'form-control'}}) }}
+            </div> 
+            <div class="col-2 form-group">
+                {{ form_label(form.largeur,'Largeur') }}
+                {{ form_widget(form.largeur,{'attr':{'class':'form-control'}}) }}
+            </div>
+            <div class="col-2 form-group">
+                {{ form_label(form.triantdeau,"Trian d'eau") }}
+                {{ form_widget(form.triantdeau,{'attr':{'class':'form-control'}}) }}
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-8 form-group">
+                {{ form_label(form.leType,'Type de navire') }}
+                {{ form_widget(form.leType,{'attr':{'class':'form-control'}}) }}
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-info">Modifier</button>
+        {{ form_end(form) }}       
+    </div>
+
+{% endblock %}

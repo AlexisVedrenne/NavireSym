@@ -10,33 +10,37 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Pay;
 use App\Entity\AisShipType;
+use App\Repository\PayRepository;
 
-class PortType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+class PortType extends AbstractType {
+
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('nom',TextType::class)
-            ->add('indicatif',TextType::class)
-            ->add('lePays',EntityType::class,[
-                'class'=>Pay::class,
-                'choice_label'=>'nom',
-                'expanded'=>false,
-                'multiple'=>false,
-            ])
-            ->add('lesTypes',EntityType::class,[
-                'class'=>AisShipType::class,
-                'choice_label'=>'libelle',
-                'expanded'=>true,
-                'multiple'=>true,
-            ])
+                ->add('nom', TextType::class)
+                ->add('indicatif', TextType::class)
+                ->add('lePays', EntityType::class, [
+                    'class' => Pay::class,
+                    'choice_label' => 'nom',
+                    'expanded' => false,
+                    'multiple' => false,
+                    'query_builder' => function(PayRepository $repo) {
+                        $lesPaysTries=$repo->getPaysTrieSurNom();
+                        return $lesPaysTries;
+                    }
+                ])
+                ->add('lesTypes', EntityType::class, [
+                    'class' => AisShipType::class,
+                    'choice_label' => 'libelle',
+                    'expanded' => true,
+                    'multiple' => true,
+                ])
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults([
             'data_class' => Port::class,
         ]);
     }
+
 }

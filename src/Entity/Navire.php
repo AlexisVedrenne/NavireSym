@@ -52,8 +52,8 @@ class Navire
     private $eta;
 
     /**
-     * @ORM\Column(name="letype")
      * @ORM\ManyToMany(targetEntity=AisShipType::class)
+     * @ORM\Column(name="letype")
      * @ORM\JoinColumn(nullable=false)
      */
     private $leType;
@@ -86,7 +86,7 @@ class Navire
     private $largeur;
 
     /**
-     * @ORM\Column(type="decimal", precision=4, scale=1)
+     * @ORM\Column(type="integer", precision=4, scale=1)
      */
     private $triantdeau;
 
