@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Port;
 use App\Entity\Pay;
-
+use App\Repository\PortRepository;
 /**
  * @Route("/port", name="port_")
  */
@@ -39,4 +39,26 @@ class PortController extends AbstractController {
         return $this->render('port/edit.html.twig',['form'=>$form->createView(),]);
     }
 
+    /**
+     * @Route("/voirtous",name="voirTous")
+     * @Template("port/voirTous.html.twig")
+     * @param PortRepository $repo
+     * @return type
+     */
+    public function voirTous(PortRepository $repo){
+        $lesPorts=$repo->findAll();
+        return array('lesPorts'=>$lesPorts);
+    }
+    
+    /**
+     * @Route("/voir/{id}",name="voir")
+     * @param PortRepository $repo
+     * @param int $id
+     * @return type
+     */
+    public function voir(PortRepository $repo,int $id){
+        $lePort=$repo->find($id);
+        $form=$this->createForm(PortType::class,$lePort);
+        return $this->render('port/edit.html.twig',['form'=>$form->createView(),]);
+    }
 }

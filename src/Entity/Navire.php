@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\AisShipType;
 
 /**
  * @ORM\Entity(repositoryClass=NavireRepository::class)
@@ -52,9 +53,8 @@ class Navire
     private $eta;
 
     /**
-     * @ORM\ManyToMany(targetEntity=AisShipType::class)
-     * @ORM\Column(name="letype")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=AisShipType::class)
+     * @ORM\JoinColumn(name="letype",nullable=false)
      */
     private $leType;
 
@@ -86,7 +86,7 @@ class Navire
     private $largeur;
 
     /**
-     * @ORM\Column(type="integer", precision=4, scale=1)
+     * @ORM\Column(type="decimal", precision=4, scale=1)
      */
     private $triantdeau;
 

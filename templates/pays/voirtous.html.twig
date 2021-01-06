@@ -1,0 +1,23 @@
+{# empty Twig template #}
+{% extends "base.html.twig" %}
+{% block title %}Voir Tous les Pays !{% endblock %}
+{% block body %}
+    <div class="container">
+        <table class="table table-hover">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Indicatif</th>
+                <th scope="col">Nom Pays</th>  
+                <th scope="col">Détails</th>  
+            </tr>
+            {% for item in lesPays %}
+                <tr>
+                    <th>{{ item.id }}</th>
+                    <th>{{ item.indicatif }}</th>
+                    <th>{{ item.nom }}</th>
+                    <th><a class="btn btn-outline-info" href="{{ path("pays_voir",{'id':item.id})}}">Détails</a></th>
+                </tr>
+            {% endfor %} 
+        </table>
+    </div>
+{% endblock %}

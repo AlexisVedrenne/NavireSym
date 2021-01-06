@@ -8,14 +8,14 @@
             <th scope="col">Idicatif</th>
             <th scope="col">Nom</th>
             <th scope="col">Pays</th>
-            <th scope="col">Voir</th>
+            <th scope="col">Détail Pays</th>
         </tr>
-        {% for unPort in lesPorts|sort((a, b) => a.nom <=> b.nom) %}
+        {% for unPort in lesPorts| sort((a, b) => a.nom <=> b.nom) %}
             <tr>
                 <th>{{ unPort.indicatif }}</th>
                 <th>{{ unPort.nom }}</th>
                 <th>{{ unPort.lePays.nom }}</th>
-                <th><a class="btn btn-outline-info" href="#">Détails</a></th>
+                <th><a class="btn btn-outline-info" href="{{ path("pays_voir",{'id':unPort.lePays.id})}}">Voir</a></th>
             </tr>
         {% endfor %} 
     </table>   

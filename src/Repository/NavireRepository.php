@@ -47,4 +47,21 @@ class NavireRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    /**
+     * Fonction qui permet de retourner l'id d'un Navire grace a son numéro Imo
+     * @param string $imo
+     * @return type
+     */
+    public function getIdByImo(string $imo){
+        $dql=$this->getEntityManager()->createQuery('select navire.id from App\Entity\Navire navire where navire.numImo=:imo');
+        $dql->setParameter('imo',$imo);
+        return $dql->getResult();
+    }
+    
+    public function getIdByMmsi(string $mmsi){
+        $dql=$this->getEntityManager()->createQuery('select navire.id from App\Entity\Navire navire where navire.numMMSI=:mmsi');
+        $dql->setParameter('mmsi',$mmsi);
+        return $dql->getResult();
+    }
 }

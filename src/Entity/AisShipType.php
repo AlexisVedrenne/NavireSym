@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=AisShipTypeRepository::class)
  * @ORM\Table(name="aisshiptype")
  */
-class AisShipType
-{
+class AisShipType {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -32,50 +32,44 @@ class AisShipType
      */
     private $libelle;
 
-    /**  
+    /**
      * @ORM\ManyToMany(targetEntity=Port::class, mappedBy="lesTypes")
      * 
      */
     private $lesPorts;
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getAisShipType(): ?int
-    {
+    public function getAisShipType(): ?int {
         return $this->aisShipType;
     }
 
-    public function setAisShipType(int $aisShipType): self
-    {
+    public function setAisShipType(int $aisShipType): self {
         $this->aisShipType = $aisShipType;
 
         return $this;
     }
 
-    public function getLibelle(): ?string
-    {
+    public function getLibelle(): ?string {
         return $this->libelle;
     }
 
-    public function setLibelle(string $libelle): self
-    {
+    public function setLibelle(string $libelle): self {
         $this->libelle = $libelle;
 
         return $this;
     }
 
-    public function getLesPorts(): ?\Doctrine\Common\Collections\Collection
-    {
+    public function getLesPorts(): ?\Doctrine\Common\Collections\Collection {
         return $this->lesPorts;
     }
 
-    public function setLesPorts(?Port $lesPorts): self
-    {
+    public function setLesPorts(?Port $lesPorts): self {
         $this->lesPorts = $lesPorts;
 
         return $this;
     }
+
 }

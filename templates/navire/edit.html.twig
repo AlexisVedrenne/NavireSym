@@ -41,6 +41,12 @@
                 {{ form_widget(form.leType,{'attr':{'class':'form-control'}}) }}
             </div>
         </div>
+        <div class="row">
+            <div class="form-group col-4">
+            {{ form_label(form.eta,"Temps d'arriver éstimé") }}
+            {{ form_widget(form.eta,{'attr':{'class':'form-control-file'}}) }}
+            </div>
+        </div>
         <br>
         <button type="submit" class="btn btn-info">Modifier</button>
         {{ form_end(form) }}       
