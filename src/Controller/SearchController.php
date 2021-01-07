@@ -29,10 +29,10 @@ class SearchController extends AbstractController {
     public function handleSearch(Request $request,NavireRepository $repo): Response{
         $valeur= $request->request->get('form')['cherche'];
         if($request->request->get('form')['choix']=='IMO'){
-            $critere=intval($repo->getIdByImo($valeur));
+            $critere=$repo->getIdByImo($valeur);
         }
         else{
-            $critere=intval($repo->getIdByMmsi($valeur));
+            $critere=$repo->getIdByMmsi($valeur);
         }
         return $this->redirectToRoute('navire_edit',array('id'=>$critere));
     }

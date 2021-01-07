@@ -56,12 +56,12 @@ class NavireRepository extends ServiceEntityRepository
     public function getIdByImo(string $imo){
         $dql=$this->getEntityManager()->createQuery('select navire.id from App\Entity\Navire navire where navire.numImo=:imo');
         $dql->setParameter('imo',$imo);
-        return $dql->getResult();
+        return $dql->getResult()[0]['id'];
     }
     
     public function getIdByMmsi(string $mmsi){
         $dql=$this->getEntityManager()->createQuery('select navire.id from App\Entity\Navire navire where navire.numMMSI=:mmsi');
         $dql->setParameter('mmsi',$mmsi);
-        return $dql->getResult();
+        return $dql->getResult()[0]['id'];
     }
 }

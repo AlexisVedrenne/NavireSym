@@ -1,0 +1,37 @@
+{# empty Twig template #}
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        {{ form_start(form) }}
+        <div class="form-group">
+
+            <div class="row">
+                <div class="col-8">
+                    {{ form_label(form.email,'Email') }}
+                    {{ form_widget(form.email,{'attr':{'placeholder':'Entrée votre Email','class':'form-control'}}) }}
+                </div>
+                <div class="col-8">
+                    {{ form_label(form.password,'Mot de passe') }}
+                    {{ form_widget(form.password,{'attr':{'placeholder':'Entrée votre mot de passe','class':'form-control'}}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8 form-group">
+                    {{ form_label(form.nom,'Nom') }}
+                    {{ form_widget(form.nom,{'attr':{'placeholder':'Entrée votre nom','class':'form-control'}}) }}
+                </div>   
+                <div class="col-8 form-group">
+                    {{ form_label(form.prenom,'Prénom') }}
+                    {{ form_widget(form.prenom,{'attr':{'placeholder':'Entrée votre prénom','class':'form-control'}}) }}
+                </div>   
+            </div>
+            <br>
+            <div>
+                <button type="submit" class="btn btn-info">Inscription</button>
+                <a class="btn btn-outline-info" href="{{ path("app_login")}}">Ou connectez-vous ici !</a>
+            </div>
+        </div>   
+    </div>
+    {{ form_end(form) }}             
+
+{% endblock %}

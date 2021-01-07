@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Port;
 use App\Entity\Pay;
 use App\Repository\PortRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 /**
  * @Route("/port", name="port_")
  */
@@ -26,6 +27,7 @@ class PortController extends AbstractController {
     /**
      * @Route("/creer",name="creer")
      * @Template("port/edit.html.twig")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function creer(Request $request, EntityManagerInterface $manager): Response {
         $port = new Port();
