@@ -1,7 +1,7 @@
 {# empty Twig template #}
 {% block header %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="/home"><img id="icoNav" src="{{ asset('images/iconTitle.png') }}"></a>{% if app.user%}{{'Utilisateur connecté : '~app.user.nom ~ ' '~app.user.prenom}}{% endif %}
+        <a href="/home"><img id="icoNav" src="{{ asset('images/iconTitle.png') }}"></a>{% if app.user%}{{' Utilisateur connecté : '~app.user.nom ~ ' '~app.user.prenom}}{% endif %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,14 +30,16 @@
                         {% endif %}
                     </div>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/user/inscription">Inscription
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
+                {% if not app.user %}  
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/user/inscription">Inscription
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>                                 
+                {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="/user/administration">Administration
+                        <a class="nav-link" href="/user/administration/voirlesusers">Administration
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>

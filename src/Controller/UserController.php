@@ -13,10 +13,11 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use App\Repository\RoleRepository;
 
-    /**
-    * @Route("/user", name="user_")
-    */
+/**
+ * @Route("/user", name="user_")
+ */
 class UserController extends AbstractController {
 
     /**
@@ -36,26 +37,53 @@ class UserController extends AbstractController {
      */
     public function inscription(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $pwd): Response {
         $user = new User();
-        $form = $this->createForm(UserType::class,$user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setRoles(['ROLE'=>'ROLE_USER']);
-            $user->setPassword($pwd->encodePassword($user, $form->get('password')->getData()));
+            $user->setRoles(['ROLE' => 'ROLE_USER']);
+            $user->setPassword($pwd->encodePassword($user, $request->get('password')));
             $manager->persist($user);
             $manager->flush();
             return $this->redirectToRoute('app_login');
         }
         return $this->render('user/inscription.html.twig', ['form' => $form->createView(),]);
     }
-    
+
     /**
-     * @Route("/voirLesUsers",name="users")
+     * @Route("/administration/voirlesusers",name="users")
      * @Template("user/voirtous.html.twig")
      * @param UserRepository $repo
      * @return type
      */
-    public function voirTousLesUser(UserRepository $repo){
-        $lesUsers=$repo->findAll();
-        return array('users'=>$lesUsers);
+    public function voirTousLesUser(UserRepository $repo) {
+        $lesUsers = $repo->findAll();
+        return array('users' => $lesUsers);
     }
+
+    /**
+     * @Route("/voir/{id}",name="voirun")
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param UserRepository $repo
+     * @param RoleRepository $repoole
+     * @param int $id
+     * @param int $idRole
+     * @return type
+     */
+    public function voir(Request $request, EntityManagerInterface $manager, UserRepository $repo, RoleRepository $repoole, int $id) {
+        $user = $repo->find($id);
+        $lesRoles=$repoole->findAll();
+        $form = $this->createForm(UserType::class,$user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $role=$request->get('roles');
+            $user->setRoles(['ROLE' => 'ROLE_' . $role]);
+            $manager->persist($user);
+            $manager->flush();
+            return $this->redirectToRoute('user_users');
+        }
+        
+        return $this->render('user/voirun.html.twig', ['form' => $form->createView(),'role'=>$user->getRoles(),'lesRoles'=>$lesRoles]);
+    }
+
 }

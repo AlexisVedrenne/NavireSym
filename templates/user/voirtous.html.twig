@@ -1,21 +1,22 @@
 {# empty Twig template #}
 {% extends "base.html.twig" %}
-{% block title %}Voir Tous les Pays !{% endblock %}
+{% block title %}Voir les inscrits{% endblock %}
 {% block body %}
     <div class="container">
         <table class="table table-hover">
             <tr>
-                <th scope="col">Indicatif</th>
-                <th scope="col">Nom du Port</th>
-                <th scope="col">Pays</th>  
-                <th scope="col">Détails</th>  
+                <th scope="col">Rôle</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Adresse email</th>
             </tr>
             {% for item in users %}
                 <tr>
-                    <th>{{ item.role}}</th>
+                    <th>{{ item.roles['ROLE']}}</th>
                     <th>{{ item.nom }}</th>
-                    <th>{{ item.lePays.nom }}</th>
-                    <th><a class="btn btn-outline-info" href="{{ path("port_voir",{'id':item.id})}}">Détails</a></th>
+                    <th>{{ item.prenom}}</th>
+                    <th>{{ item.email}}</th>
+                    <th><a class="btn btn-outline-info" href="{{ path("port_voir",{'id':item.id})}}">Contacter</a> <a class="btn btn-outline-info" href="{{ path("user_voirun",{'id':item.id})}}">Modifier le membre</a></th>
                 </tr>
             {% endfor %} 
         </table>

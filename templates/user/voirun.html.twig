@@ -1,0 +1,35 @@
+{# empty Twig template #}
+{% extends "base.html.twig" %}
+{% block body %}
+    {{ form_start(form) }}
+    <div class="form-group  align-middle container">
+
+        <div class="row">
+            <div class="col-4">
+                <label>Role</label>
+                <select class="form-control" name="roles" size="1">
+                    <option selected>{{ role['ROLE'] }}
+                        {% for item in lesRoles %}
+                        <option>{{ item.libelle }}
+                        {% endfor %}
+                </select>
+            </div>
+            <div class="col-4">
+                {{ form_label(form.nom,'Nom') }}
+                {{ form_widget(form.nom,{'attr':{'placeholder':'Nom','class':'form-control'}}) }}
+            </div>
+            <div class="col-4">
+                {{ form_label(form.prenom,'Prénom') }}
+                {{ form_widget(form.prenom,{'attr':{'placeholder':'Nom','class':'form-control'}}) }}
+            </div>
+            <div class="col-4">
+                {{ form_label(form.email,'Adresse email') }}
+                {{ form_widget(form.email,{'attr':{'placeholder':'Adresse email','class':'form-control'}}) }}
+            </div>            
+        </div>        
+        <br>
+        <button type="submit" class="btn btn-info">Modifier</button>
+        {{ form_end(form) }}       
+    </div>
+
+{% endblock %}
