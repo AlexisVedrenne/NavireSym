@@ -42,14 +42,33 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-4">
-            {{ form_label(form.eta,"Temps d'arriver éstimé") }}
-            {{ form_widget(form.eta,{'attr':{'class':'form-control-file'}}) }}
+            <div class="form-group col-8">
+                {{ form_label(form.eta,"Temps d'arriver éstimé") }}
+                {{ form_widget(form.eta,{'attr':{'class':'form-control'}}) }}
             </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-info">Modifier</button>
-        {{ form_end(form) }}       
+        <button type="submit" class="btn btn-info">Modifier</button>       
+        {{ form_end(form) }}
+
+    </div>
+    <div class="container">
+        <script type="text/javascript">
+            // Map appearance
+            var width = "100%";         // width in pixels or percentage
+            var height = "500";         // height in pixels
+            var latitude = "0.00";      // center latitude (decimal degrees)
+            var longitude = "0.00";     // center longitude (decimal degrees)
+            var zoom = "3";             // initial zoom (between 3 and 18)
+            var names = false;          // always show ship names (defaults to false)
+
+            // Single ship tracking
+            var mmsi = "{{ mmsi}}"; // display latest position (by MMSI)
+            var imo = "{{imo}}";        // display latest position (by IMO, overrides MMSI)
+            var show_track = false;     // display track line (last 24 hours)
+
+        </script>
+        <script type="text/javascript" src="https://www.vesselfinder.com/aismap.js"></script>
     </div>
 
 {% endblock %}
